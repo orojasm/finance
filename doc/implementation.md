@@ -129,3 +129,107 @@ A continuación los cambios en el archivo ***pom.xml***.
                     </path>
                 </annotationProcessorPaths>
 ```
+
+## 2.3. Instalación de la Base de Datos MySQL
+
+En el ambiente del desarrollador utilizaremos MySQL en un contenedor Docker, :
+*
+* Prerrequisito tener instalado ***Docker***.
+* En un directorio aparte, creamos el archivo ***docker-compose.yaml***.
+* El contenido del archivo debe ser el que vemos abajo.
+* Nos ubicamos en este directorio y ejecutamos el comando `docker-compose up -d`.
+* Verificamos su ejecución con el comando `docker ps`.
+
+``` shell
+# To Run    docker-compose up -d
+# To List   docker ps
+# Remove    docker rm -f <ids>
+
+services:
+  database:
+    container_name: mysql
+    image: mysql:latest
+    volumes: 
+      - ./data:/var/lib/mysql
+    restart: always
+    ports: 
+      - '3306:3306'
+    environment: 
+      MYSQL_ROOT_PASSWORD: <RootPassword>
+      MYSQL_DATABASE: finance_db
+      MYSQL_USER: finance_user
+      MYSQL_PASSWORD: <userPassPassword>
+```
+
+## 2.4. Crear una base de datos ***MySQL***
+
+Abre ***MySQL*** Workbench (o la línea de comandos de ***MySQL***) y ejecuta el siguiente comando ***SQL***
+para crear una nueva base de datos:
+
+``` bash
+CREATE DATABASE finance_db;
+```
+
+Esto creará una base de datos llamada ***finance_db*** para almacenar los datos de la aplicación.
+
+## 2.5. Configurar MySql
+
+En el archivo ***src/main/resources/application.properties***, agregue la siguiente
+configuración para conectar su aplicación ***Spring Boot*** con ***MySQL***:
+
+``` bash
+# MySQL Database configuration
+spring.datasource.url=${DB_HOST}
+spring.datasource.username=${DB_USER}
+spring.datasource.password=${DB_PASSWORD}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# JPA and Hibernate configuration
+spring.jpa.generate-ddl=true
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+# spring.jpa.show-sql=true
+# logging.level.org.hibernate.SQL=debug
+```
+
+Note que debe configurar las variables de entorno: DB_HOST, DB_USER y DB_PASSWORD;
+con los valores que correspondan a su base de datos.
+
+## 2.6. Configurar application.properties
+
+En el archivo ***src/main/resources/application.properties***, adicionamos las siguientes
+configuraciones:
+
+* Configuración del nombre de la aplicación
+* Agregar el **context path**
+* Configuración de logger
+
+``` bash
+# App configuration
+spring.application.name=finance-app
+
+# The context path
+server.servlet.context-path=/api/v1
+
+# Login configuration
+spring.output.ansi.enabled=ALWAYS
+logging.level.com.orojas=trace
+logging.file.name=finance.log
+
+# MapStruct configuration
+spring.jackson.default-property-inclusion=non_null
+spring.jackson.property-naming-strategy=SNAKE_CASE
+
+# MySQL Database configuration
+spring.datasource.url=${DB_HOST}
+spring.datasource.username=${DB_USER}
+spring.datasource.password=${DB_PASSWORD}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# JPA and Hibernate configuration
+spring.jpa.generate-ddl=true
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+# spring.jpa.show-sql=true
+# logging.level.org.hibernate.SQL=debug
+```
