@@ -1,10 +1,10 @@
-package com.orojas.finance.infrastructure.adapters.input.rest;
+package com.orojas.finance.infrastructure.rest;
 
 import com.orojas.finance.application.ports.input.PaymentServicePort;
 import com.orojas.finance.domain.model.Payment;
-import com.orojas.finance.infrastructure.adapters.input.rest.mapper.PaymentRestMapper;
-import com.orojas.finance.infrastructure.adapters.input.rest.model.request.PaymentRequest;
-import com.orojas.finance.infrastructure.adapters.input.rest.model.response.PaymentResponse;
+import com.orojas.finance.infrastructure.rest.mapper.PaymentRestMapper;
+import com.orojas.finance.infrastructure.rest.model.request.PaymentRequest;
+import com.orojas.finance.infrastructure.rest.model.response.PaymentResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

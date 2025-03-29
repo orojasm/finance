@@ -1,7 +1,7 @@
-package com.orojas.finance.infrastructure.adapters.output.persistence.mapper;
+package com.orojas.finance.infrastructure.persistence.mapper;
 
 import com.orojas.finance.domain.model.Payment;
-import com.orojas.finance.infrastructure.adapters.output.persistence.entity.PaymentEntity;
+import com.orojas.finance.infrastructure.persistence.entity.PaymentEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

@@ -1,9 +1,5 @@
-package com.orojas.finance.infrastructure.adapters.output.persistence.entity;
+package com.orojas.finance.infrastructure.rest.model.response;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -12,14 +8,11 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@Builder
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name="payments")
-public class PaymentEntity {
-    @Id
-    @GeneratedValue(generator = "UUID")
+public class PaymentResponse {
     private UUID id;
     private String period;
     private String description;

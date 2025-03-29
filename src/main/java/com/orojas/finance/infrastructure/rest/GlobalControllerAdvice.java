@@ -1,4 +1,4 @@
-package com.orojas.finance.infrastructure.adapters.input.rest;
+package com.orojas.finance.infrastructure.rest;
 
 import com.orojas.finance.domain.exception.PaymentNotFoundException;
 import com.orojas.finance.domain.model.ErrorResponse;

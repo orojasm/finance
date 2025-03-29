@@ -1,10 +1,10 @@
-package com.orojas.finance.infrastructure.adapters.output.persistence;
+package com.orojas.finance.infrastructure.persistence;
 
 import com.orojas.finance.application.ports.output.PaymentPersistencePort;
 import com.orojas.finance.domain.model.Payment;
-import com.orojas.finance.infrastructure.adapters.output.persistence.entity.PaymentEntity;
-import com.orojas.finance.infrastructure.adapters.output.persistence.mapper.PaymentPersistenceMapper;
-import com.orojas.finance.infrastructure.adapters.output.persistence.repository.PaymentRepository;
+import com.orojas.finance.infrastructure.persistence.entity.PaymentEntity;
+import com.orojas.finance.infrastructure.persistence.mapper.PaymentPersistenceMapper;
+import com.orojas.finance.infrastructure.persistence.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
