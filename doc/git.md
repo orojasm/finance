@@ -68,7 +68,7 @@ git push origin feat/config
 * ***Pull Request a develop***: En `GitHub` Solicitamos el Pull request para 
 hacer merge con la rama develop
 
-* ***Aceptamos el Pull request***: En `GitHub` Revicamos el codigo y aceptamos 
+* ***Aceptamos el Pull request***: En `GitHub` Revisamos el codigo y aceptamos el cambio.
 el Pull request y una vez aplicado el cambio borramos la rama feature.
 
 * ***Pull de la rama develop***: En `Local` descargamos la rama develop y 

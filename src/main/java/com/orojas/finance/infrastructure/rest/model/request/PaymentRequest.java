@@ -20,6 +20,7 @@ public class PaymentRequest {
     private UUID id;
     @Size(min = 6, max = 6)
     private String period;
+    private Integer sequence;
     @NotEmpty(message = "Field description cannot be blank, empty or null.")
     private String description;
     private String currency;

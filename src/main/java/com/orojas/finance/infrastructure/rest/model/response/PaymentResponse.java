@@ -15,6 +15,7 @@ import java.util.UUID;
 public class PaymentResponse {
     private UUID id;
     private String period;
+    private Integer sequence;
     private String description;
     private String currency;
     private BigDecimal amountToPay;

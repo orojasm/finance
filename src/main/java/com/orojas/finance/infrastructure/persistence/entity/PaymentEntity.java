@@ -22,6 +22,7 @@ public class PaymentEntity {
     @GeneratedValue(generator = "UUID")
     private UUID id;
     private String period;
+    private Integer sequence;
     private String description;
     private String currency;
     private BigDecimal amountToPay;

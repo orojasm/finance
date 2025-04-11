@@ -16,6 +16,7 @@ import java.util.UUID;
 public class Payment {
     private UUID id;
     private String period;
+    private Integer sequence;
     private String description;
     private String currency;
     private BigDecimal amountToPay;
@@ -34,14 +35,15 @@ public class Payment {
     private String status;
     private LocalDateTime createdAt;
 
-    public Payment(String period, String description, double amountToPay, String reference, LocalDate dueDate, String status) {
+    public Payment(String period, Integer sequence, String description, double amountToPay, String reference, LocalDate dueDate, String status) {
         this.period = period;
+        this.sequence = sequence;
         this.description = description;
         this.currency = "COL";
         this.amountToPay = BigDecimal.valueOf(amountToPay);
-        this.amountPaid = BigDecimal.valueOf(amountToPay);
-        this.dueDate = LocalDateTime.now();
-        this.paymentDate = LocalDateTime.now();
+        this.amountPaid = BigDecimal.valueOf(0);
+        this.dueDate = dueDate.atStartOfDay();
+        this.paymentDate = null;
         this.reference = reference;
         this.website = "";
         this.budget = "";

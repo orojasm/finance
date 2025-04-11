@@ -69,33 +69,65 @@ public class PaymentService implements PaymentServicePort {
 
     @Override
     public String populatePayments(String period) {
-        List<Payment> payments = Arrays.asList(
-            new Payment(period, "Pago Dinners", 449980.0, "", LocalDate.of(2025, 3, 4),"DONE"),
-            new Payment(period, "Pago Crediexpress", 3276000.0, "3695587-5", LocalDate.of(2025,3,5),"DONE"),
-            new Payment(period, "ENEL Apto", -1.0, "", LocalDate.of(2025,3,20), "INITIAL"),
-            new Payment(period, "Parafiscales", 488500.0, "https://independientes2.miplanilla.com/PublicoIndependientes/Publico/IndexIndependientes", LocalDate.of(2025,3,8), "DONE"),
-            new Payment(period, "ENEL of 701", 68440.0, "Enel Colombia SA ESP - 1000203 <04389771>", LocalDate.of(2025, 3, 13), "DONE"),
-            new Payment(period, "ENEL of 702", 70950.0, "Enel Colombia SA ESP - 1000203 <04389783>", LocalDate.of(2025, 3, 13), "DONE"),
-            new Payment(period, "ENEL of 602", 627710.0, "Enviar a Masters Group <04389769>", LocalDate.of(2025,3,13), "DONE"),
-            new Payment(period, "Gas domiciliario Apto", 65530.0, "Pago automático Davivienda", LocalDate.of(2025,3,12), "DONE"),
-            new Payment(period, "Admon Apto", 495100.0, "https://www.pagosvirtualesavvillas.com.co/personal/pagos/3870", LocalDate.of(2025, 3, 15), "DONE"),
-            new Payment(period, "Admon of 701", 1224000.0, "$2197500 = $1224000 + $973500", LocalDate.of(2025,3,15), "DONE"),
-            new Payment(period, "Admon of 702", 973500.0, "", LocalDate.of(2025,3,15), "DONE"),
-            new Payment(period, "Admon of 602", 1068500.0, "Enviar a Masters Group", LocalDate.of(2025,3,15), "DONE"),
-            new Payment(period, "Banco Falabella", 66610.0, "https://banco-co-gateway-pagos.fif.tech/payment/Index.html#!/login", LocalDate.of(2025,3,15), "DONE"),
-            new Payment(period, "Arriendo Estudio", 310000.0, "", LocalDate.of(2025,3,16), "DOING"),
-            new Payment(period, "Ayuda a Rocio", 300000.0, "", LocalDate.of(2025,3,16), "DOING"),
-            new Payment(period, "Pago Mastercard",  1802585.0, "", LocalDate.of(2025,3,20), "TODO"),
-            new Payment(period, "Pago Visa", 2892181.0, "", LocalDate.of(2025,3,20), "TODO"),
-            new Payment(period, "EAAB of 701", 0.0, "https://pagos.acueducto.com.co/?cc=11846630", LocalDate.of(2025,4,10), "N.A."),
-            new Payment(period, "EAAB of 702", 0.0, "https://pagos.acueducto.com.co/?cc=11846631", LocalDate.of(2025,4,10), "N.A."),
-            new Payment(period, "EAAB of 602", 0.0, "Enviar a Masters Group <11846629>", LocalDate.of(2025,4,10), "N.A."),
-            new Payment(period, "EAAB Apto", 0.0, "https://pagos.acueducto.com.co/?cc=12072340", LocalDate.of(2025,4,20), "N.A."),
-            new Payment(period, "Internet Hogar", 88038.0, "", LocalDate.of(2025,3,20), "TODO"),
-            new Payment(period, "Telefonia Movil ORojas", 27596.0, "", LocalDate.of(2025,3,4), "DONE"),
-            new Payment(period, "Telefonia Movil JDavid", 27596.0, "", LocalDate.of(2025,3,12), "DONE"),
-            new Payment(period, "Colsanitas", 488500.0, "", LocalDate.of(2025,3,30), "INITIAL")
-        );
+        List<Payment> payments;
+        if (period.equals("202503")) {
+            payments = Arrays.asList(
+                    new Payment(period, 100, "Pago Dinners", 449980.0, "", LocalDate.of(2025, 3, 4),"DONE"),
+                    new Payment(period, 200, "Pago Crediexpress", 3276000.0, "3695587-5", LocalDate.of(2025,3,5),"DONE"),
+                    new Payment(period, 300, "ENEL Apto", -1.0, "", LocalDate.of(2025,3,20), "INITIAL"),
+                    new Payment(period, 400, "Parafiscales", 488500.0, "https://independientes2.miplanilla.com/PublicoIndependientes/Publico/IndexIndependientes", LocalDate.of(2025,3,8), "DONE"),
+                    new Payment(period, 500, "ENEL of 701", 68440.0, "Enel Colombia SA ESP - 1000203 <04389771>", LocalDate.of(2025, 3, 13), "DONE"),
+                    new Payment(period, 600, "ENEL of 702", 70950.0, "Enel Colombia SA ESP - 1000203 <04389783>", LocalDate.of(2025, 3, 13), "DONE"),
+                    new Payment(period, 700, "ENEL of 602", 627710.0, "Enviar a Masters Group <04389769>", LocalDate.of(2025,3,13), "DONE"),
+                    new Payment(period, 800, "Gas domiciliario Apto", 65530.0, "Pago automático Davivienda", LocalDate.of(2025,3,12), "DONE"),
+                    new Payment(period, 900, "Admon Apto", 495100.0, "https://www.pagosvirtualesavvillas.com.co/personal/pagos/3870", LocalDate.of(2025, 3, 15), "DONE"),
+                    new Payment(period, 1000, "Admon of 701", 1224000.0, "$2197500 = $1224000 + $973500", LocalDate.of(2025,3,15), "DONE"),
+                    new Payment(period, 1100, "Admon of 702", 973500.0, "", LocalDate.of(2025,3,15), "DONE"),
+                    new Payment(period, 1200, "Admon of 602", 1068500.0, "Enviar a Masters Group", LocalDate.of(2025,3,15), "DONE"),
+                    new Payment(period, 1300, "Banco Falabella", 66610.0, "https://banco-co-gateway-pagos.fif.tech/payment/Index.html#!/login", LocalDate.of(2025,3,15), "DONE"),
+                    new Payment(period, 1400, "Arriendo Estudio", 310000.0, "", LocalDate.of(2025,3,16), "DOING"),
+                    new Payment(period, 1500, "Ayuda a Rocio", 300000.0, "", LocalDate.of(2025,3,16), "DOING"),
+                    new Payment(period, 1600, "Pago Mastercard",  1802585.0, "", LocalDate.of(2025,3,20), "TODO"),
+                    new Payment(period, 1700, "Pago Visa", 2892181.0, "", LocalDate.of(2025,3,20), "TODO"),
+                    new Payment(period, 1800, "EAAB of 701", 0.0, "https://pagos.acueducto.com.co/?cc=11846630", LocalDate.of(2025,4,10), "N.A."),
+                    new Payment(period, 1900, "EAAB of 702", 0.0, "https://pagos.acueducto.com.co/?cc=11846631", LocalDate.of(2025,4,10), "N.A."),
+                    new Payment(period, 2000, "EAAB of 602", 0.0, "Enviar a Masters Group <11846629>", LocalDate.of(2025,4,10), "N.A."),
+                    new Payment(period, 2100, "EAAB Apto", 0.0, "https://pagos.acueducto.com.co/?cc=12072340", LocalDate.of(2025,4,20), "N.A."),
+                    new Payment(period, 2200, "Internet Hogar", 88038.0, "", LocalDate.of(2025,3,20), "TODO"),
+                    new Payment(period, 2300, "Telefonia Movil ORojas", 27596.0, "", LocalDate.of(2025,3,4), "DONE"),
+                    new Payment(period, 2400, "Telefonia Movil JDavid", 27596.0, "", LocalDate.of(2025,3,12), "DONE"),
+                    new Payment(period, 2500, "Colsanitas", 488500.0, "", LocalDate.of(2025,3,30), "INITIAL")
+            );
+        } else {
+            payments = Arrays.asList(
+                    new Payment(period, 100, "Pago Dinners", 449980.0, "", LocalDate.of(2025, 3, 4),"INITIAL"),
+                    new Payment(period, 200, "Pago Crediexpress", 3500000.0, "3695587-5", LocalDate.of(2025,3,5),"INITIAL"),
+                    new Payment(period, 300, "ENEL Apto", 220000.0, "", LocalDate.of(2025,3,20), "INITIAL"),
+                    new Payment(period, 400, "Parafiscales", 488500.0, "https://independientes2.miplanilla.com/PublicoIndependientes/Publico/IndexIndependientes", LocalDate.of(2025,3,8), "INITIAL"),
+                    new Payment(period, 500, "ENEL of 701", 70000.0, "Enel Colombia SA ESP - 1000203 <04389771>", LocalDate.of(2025, 3, 13), "INITIAL"),
+                    new Payment(period, 600, "ENEL of 702", 70000.0, "Enel Colombia SA ESP - 1000203 <04389783>", LocalDate.of(2025, 3, 13), "INITIAL"),
+                    new Payment(period, 700, "ENEL of 602", 0.0, "Enviar a Masters Group <04389769>", LocalDate.of(2025,3,13), "INITIAL"),
+                    new Payment(period, 800, "Gas domiciliario Apto", 80000.0, "Pago automático Davivienda", LocalDate.of(2025,3,12), "INITIAL"),
+                    new Payment(period, 900, "Admon Apto", 495100.0, "https://www.pagosvirtualesavvillas.com.co/personal/pagos/3870", LocalDate.of(2025, 3, 15), "INITIAL"),
+                    new Payment(period, 1000, "Admon of 701", 1224000.0, "$2197500 = $1224000 + $973500", LocalDate.of(2025,3,15), "INITIAL"),
+                    new Payment(period, 1100, "Admon of 702", 973500.0, "", LocalDate.of(2025,3,15), "INITIAL"),
+                    new Payment(period, 1200, "Admon of 602", 1068500.0, "Enviar a Masters Group", LocalDate.of(2025,3,15), "INITIAL"),
+                    new Payment(period, 1300, "Banco Falabella", 66610.0, "https://banco-co-gateway-pagos.fif.tech/payment/Index.html#!/login", LocalDate.of(2025,3,15), "INITIAL"),
+                    new Payment(period, 1400, "Arriendo Estudio", 310000.0, "", LocalDate.of(2025,3,16), "INITIAL"),
+                    new Payment(period, 1500, "Ayuda a Rocio", 300000.0, "", LocalDate.of(2025,3,16), "INITIAL"),
+                    new Payment(period, 1600, "Pago Mastercard",  1802585.0, "", LocalDate.of(2025,3,20), "INITIAL"),
+                    new Payment(period, 1700, "Pago Visa", 2892181.0, "", LocalDate.of(2025,3,20), "INITIAL"),
+                    new Payment(period, 1800, "EAAB of 701", 0.0, "https://pagos.acueducto.com.co/?cc=11846630", LocalDate.of(2025,4,10), "INITIAL"),
+                    new Payment(period, 1900, "EAAB of 702", 0.0, "https://pagos.acueducto.com.co/?cc=11846631", LocalDate.of(2025,4,10), "INITIAL"),
+                    new Payment(period, 2000, "EAAB of 602", 0.0, "Enviar a Masters Group <11846629>", LocalDate.of(2025,4,10), "INITIAL"),
+                    new Payment(period, 2100, "EAAB Apto", 0.0, "https://pagos.acueducto.com.co/?cc=12072340", LocalDate.of(2025,4,20), "INITIAL"),
+                    new Payment(period, 2200, "Internet Hogar", 88038.0, "", LocalDate.of(2025,3,20), "INITIAL"),
+                    new Payment(period, 2300, "Telefonia Movil ORojas", 27596.0, "", LocalDate.of(2025,3,4), "INITIAL"),
+                    new Payment(period, 2400, "Telefonia Movil JDavid", 27596.0, "", LocalDate.of(2025,3,12), "INITIAL"),
+                    new Payment(period, 2500, "Colsanitas", 488500.0, "", LocalDate.of(2025,3,30), "INITIAL")
+            );
+
+        }
         String msg = "Populate " + period + ", add " + payments.size() + " new payments";
         persistencePort.saveAll(payments);
         return msg;
