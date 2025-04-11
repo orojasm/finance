@@ -1,5 +1,6 @@
 package com.orojas.finance.infrastructure.rest;
 
+import com.orojas.finance.domain.model.User;
 import com.orojas.finance.infrastructure.rest.mapper.UserRestMapper;
 import com.orojas.finance.infrastructure.rest.model.request.UserRequest;
 import com.orojas.finance.infrastructure.rest.model.response.UserResponse;
@@ -28,9 +29,6 @@ public class UserRestAdapter {
     @PostMapping
     // TODO Authorize @PreAuthorize("hasAuthority('CREATE')")
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest request) {
-        log.info("Create user");
-        log.info(request.toString());
-
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(restMapper.toUserResponse(
                         servicePort.createUser(restMapper.toUser(request))));
@@ -48,9 +46,6 @@ public class UserRestAdapter {
 
     @PutMapping("/{id}")
     public UserResponse updateUser(@PathVariable UUID id, @Valid @RequestBody UserRequest request) {
-        log.info("Update user");
-        log.info(request.toString());
-
         return restMapper.toUserResponse(
                 servicePort.updateUser(id, restMapper.toUser(request)));
     }
@@ -58,6 +53,13 @@ public class UserRestAdapter {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable UUID id) {
         servicePort.deleteUser(id);
+    }
+
+    @PostMapping("/populate")
+    public ResponseEntity<String> populateUsers() {
+        log.info("POST users/populate");
+        String msg = servicePort.populateUsers();
+        return new ResponseEntity<>(msg, HttpStatus.OK);
     }
 
 }

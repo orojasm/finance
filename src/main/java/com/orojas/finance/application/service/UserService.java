@@ -3,18 +3,19 @@ package com.orojas.finance.application.service;
 import com.orojas.finance.application.ports.input.UserServicePort;
 import com.orojas.finance.application.ports.output.UserPersistencePort;
 import com.orojas.finance.domain.exception.UserNotFoundException;
-import com.orojas.finance.domain.model.Permission;
 import com.orojas.finance.domain.model.Role;
-import com.orojas.finance.domain.model.RoleEnum;
+import com.orojas.finance.domain.model.RoleList;
 import com.orojas.finance.domain.model.User;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class UserService implements UserServicePort {
@@ -22,6 +23,15 @@ public class UserService implements UserServicePort {
 
     @Override
     public User createUser(User user) {
+        // TODO Verify that when creating a user, no roles are sent in the request.
+        Role userRole = Role.builder()
+                .id(1L)
+                .roleName(RoleList.USER)
+                .build();
+        user.setRoles(Set.of(userRole));
+        log.debug(user.toString());
+        log.debug(userRole.toString());
+
         return persistencePort.save(user);
     }
 
@@ -61,37 +71,26 @@ public class UserService implements UserServicePort {
 
     @Override
     public String populateUsers() {
-        // Instantiate the Permissions
-        Permission readPermission = Permission.builder().permissionName("READ").build();
-        Permission whitePermission = Permission.builder().permissionName("WRITE").build();
-        Permission updatePermission = Permission.builder().permissionName("UPDATE").build();
-        Permission createPermission = Permission.builder().permissionName("CREATE").build();
-        Permission deletePermission = Permission.builder().permissionName("DELETE").build();
-        Permission refactorPermission = Permission.builder().permissionName("REFACTOR").build();
 
         // Instantiate the Roles
-        Role adminRole = Role.builder()
-                .roleName(RoleEnum.ADMIN)
-                .permissionList(Set.of(createPermission, readPermission, whitePermission, updatePermission, deletePermission))
-                .build();
         Role userRole = Role.builder()
-                .roleName(RoleEnum.USER)
-                .permissionList(Set.of(createPermission, readPermission))
+                .roleName(RoleList.USER)
+                .build();
+        Role adminRole = Role.builder()
+                .roleName(RoleList.ADMIN)
                 .build();
         Role invitedRole = Role.builder()
-                .roleName(RoleEnum.INVITED)
-                .permissionList(Set.of(readPermission))
+                .roleName(RoleList.INVITED)
                 .build();
         Role developernRole = Role.builder()
-                .roleName(RoleEnum.DEVELOPER)
-                .permissionList(Set.of(createPermission, readPermission, whitePermission, updatePermission, deletePermission, refactorPermission))
+                .roleName(RoleList.DEVELOPER)
                 .build();
 
         // Instantiate the users
-        User orojas = User.builder()
-                .username("orojas")
+        User july = User.builder()
+                .username("july")
                 .password("1234")
-                .roles(Set.of(developernRole))
+                .roles(Set.of(userRole))
                 .isEnabled(true)
                 .accountNoExpired(true)
                 .accountNoLocked(true)
@@ -106,15 +105,6 @@ public class UserService implements UserServicePort {
                 .accountNoLocked(true)
                 .credentialNoExpired(true)
                 .build();
-        User july = User.builder()
-                .username("july")
-                .password("1234")
-                .roles(Set.of(userRole))
-                .isEnabled(true)
-                .accountNoExpired(true)
-                .accountNoLocked(true)
-                .credentialNoExpired(true)
-                .build();
         User dany = User.builder()
                 .username("dany")
                 .password("1234")
@@ -124,12 +114,21 @@ public class UserService implements UserServicePort {
                 .accountNoLocked(true)
                 .credentialNoExpired(true)
                 .build();
+        User orojas = User.builder()
+                .username("orojas")
+                .password("1234")
+                .roles(Set.of(developernRole))
+                .isEnabled(true)
+                .accountNoExpired(true)
+                .accountNoLocked(true)
+                .credentialNoExpired(true)
+                .build();
 
-        // persistencePort.saveAll(List.of(orojas, sofy, july, dany));
-        persistencePort.save(orojas);
-        persistencePort.save(sofy);
+        // persistencePort.saveAll(List.of(july, sofy, dany, orojas));
         persistencePort.save(july);
+        persistencePort.save(sofy);
         persistencePort.save(dany);
+        persistencePort.save(orojas);
         return "Populate Users.";
     }
 }

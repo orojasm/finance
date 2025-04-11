@@ -11,8 +11,9 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface UserRestMapper {
 
-    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "isEnabled", source = "enabled")
     User toUser(UserRequest request);
+    @Mapping(target = "isEnabled", source = "enabled")
     UserResponse toUserResponse(User user);
     List<UserResponse> toUserResponseList(List<User> requestList);
 
