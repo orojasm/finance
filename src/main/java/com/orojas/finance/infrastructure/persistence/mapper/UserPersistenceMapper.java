@@ -1,0 +1,19 @@
+package com.orojas.finance.infrastructure.persistence.mapper;
+
+import com.orojas.finance.domain.model.User;
+import com.orojas.finance.infrastructure.persistence.entity.UserEntity;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+import java.util.List;
+
+@Mapper(componentModel = "spring")
+public interface UserPersistenceMapper {
+
+    UserEntity toUserEntity(User user);
+    @Mapping(target = "isEnabled", source = "enabled")
+    @Mapping(target = "id", source = "id")
+    User toUser(UserEntity entity);
+    List<User> toUserList(List<UserEntity> entityList);
+
+}
