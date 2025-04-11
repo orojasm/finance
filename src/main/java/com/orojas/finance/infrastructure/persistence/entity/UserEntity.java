@@ -18,19 +18,30 @@ public class UserEntity {
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID id;
+
     @Column(unique = true, nullable = false, updatable = false)
     private String username;
+
     private String password;
+
+    @Column(name = "is_enabled")
     private boolean isEnabled;
+
+    @Column(name = "account_no_expired")
     private boolean accountNoExpired;
+
+    @Column(name = "account_no_locked")
     private boolean accountNoLocked;
+
+    @Column(name = "credential_no_expired")
     private boolean credentialNoExpired;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    Set<RoleEntity> roles = new HashSet<>();
+    private Set<RoleEntity> roles = new HashSet<>();
+
 }
